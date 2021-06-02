@@ -2,7 +2,7 @@ apiVersion: v2
 name: service-restarter
 description: A Helm chart for periodically restarting Kubernetes workloads like deployments, daemonsets and statefulsets.
 
-home: https://github.com/wtchangdm
+home: https://github.com/wtchangdm/helm-charts
 maintainers:
   - name: W.T. Chang
     url: https://github.com/wtchangdm
