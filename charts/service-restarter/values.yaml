@@ -1,0 +1,44 @@
+# Default values for service-restarter.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+successfulJobsHistoryLimit: 1
+failedJobsHistoryLimit: 1
+
+image:
+  repository: public.ecr.aws/bitnami/kubectl
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+restartPolicy: OnFailure
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+resources:
+  limits:
+    cpu: 50m
+    memory: 64Mi
+  requests:
+    cpu: 50m
+    memory: 64Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+targetServices:
+  # Sample:
+  #
+  - namespace: ns-1
+    kind: Deployment # deployments, daemonsets, statefulsets
+    name: nginx # name of resource
+    schedule: "* * * * *" # cronjob schedule
+  # - namespace: ns-2
+  #   kind: Deployment # deployments, daemonsets, statefulsets
+  #   name: httpd # name of resource
+  #   schedule: "* * * * *" # cronjob schedule

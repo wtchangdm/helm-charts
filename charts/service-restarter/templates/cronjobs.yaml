@@ -1,0 +1,44 @@
+{{- range .Values.targetServices }}
+{{- if $.Capabilities.APIVersions.Has "batch/v1/CronJob" }}
+apiVersion: batch/v1
+{{- else }}
+apiVersion: batch/v1beta1
+{{- end }}
+kind: CronJob
+metadata:
+  name: "restart-{{ .namespace }}-{{ .kind | lower }}-{{ .name }}"
+  namespace: "{{ $.Release.Namespace }}"
+spec:
+  schedule: "{{ .schedule }}"
+  successfulJobsHistoryLimit: {{ $.Values.successfulJobsHistoryLimit }}
+  failedJobsHistoryLimit: {{ $.Values.failedJobsHistoryLimit }}
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: "{{ $.Release.Name }}-service-account"
+          containers:
+          - name: kubectl
+            image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag | default (printf "%s.%s" $.Capabilities.KubeVersion.Major $.Capabilities.KubeVersion.Minor) }}"
+            imagePullPolicy: "{{ $.Values.image.pullPolicy }}"
+            command:
+            - sh
+            - -c
+            args:
+            - kubectl -n {{ .namespace }} rollout restart {{ .kind | lower }} {{ .name }}
+          restartPolicy: "{{ $.Values.restartPolicy }}"
+          {{- with $.Values.nodeSelector }}
+          nodeSelector:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $.Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with $.Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+
+---
+{{- end }}
