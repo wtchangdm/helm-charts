@@ -22,13 +22,13 @@ This chart is used for restarting Kubernetes workloads like deployments, daemons
 | restartPolicy | `restartPolicy` of Pod. | `{}` |
 | targetServices | Array of services to restart. Properties: <ul><li>`namespace`: `<string>`</li><li>`kind`: `deployment \| daemonset \| statefulset`</li><li>`name`: `<string>`</li><li>`schedule`: `"* * * * *"`</li></ul> | `[]` |
 
-## Sample
+## Example
 
 ```bash
 $ helm repo add wtchangdm https://wtchangdm.github.io/helm-charts
 
 $ helm upgrade --install service-restarter wtchangdm/service-restarter \
-                --set "namespace=ops" \
+                --namespace some-ns --create-namespace \
                 --set "targetServices[0].namespace=ns-1" \
                 --set "targetServices[0].kind=deployment" \
                 --set "targetServices[0].name=nginx" \
