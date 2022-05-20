@@ -26,9 +26,9 @@ spec:
             - -c
             args:
             - kubectl -n {{ .namespace }} rollout restart {{ .kind | lower }} {{ .name }}
+            resources:
+              {{- toYaml $.Values.resources | nindent 14 }}
           restartPolicy: "{{ $.Values.restartPolicy }}"
-          resources:
-            {{- toYaml $.Values.resources | nindent 12 }}
           {{- with $.Values.nodeSelector }}
           nodeSelector:
             {{- toYaml . | nindent 12 }}
