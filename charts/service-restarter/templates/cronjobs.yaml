@@ -6,7 +6,7 @@ apiVersion: batch/v1beta1
 {{- end }}
 kind: CronJob
 metadata:
-  name: "restart-{{ .namespace | releace "-" "" }}-{{ .name | releace "-" "" }}"
+  name: "restart-{{ .namespace | replace "-" "" }}-{{ .name | replace "-" "" }}"
   namespace: "{{ $.Release.Namespace }}"
 spec:
   schedule: "{{ .schedule }}"
