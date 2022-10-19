@@ -3,6 +3,27 @@ entries:
   service-restarter:
   - apiVersion: v2
     appVersion: 1.21.0
+    created: "2022-10-19T10:38:21.256262351Z"
+    description: A Helm chart for periodically restarting Kubernetes workloads like
+      deployments, daemonsets and statefulsets.
+    digest: 462e240bb025333c045e0adbadc3889b94418d550dbefbbf55c2b42c89ee7fa2
+    home: https://github.com/wtchangdm/helm-charts
+    keywords:
+    - restart
+    - deployments
+    - daemonsets
+    - statefulsets
+    - periodically
+    maintainers:
+    - name: W.T. Chang
+      url: https://github.com/wtchangdm
+    name: service-restarter
+    type: application
+    urls:
+    - https://github.com/wtchangdm/helm-charts/releases/download/service-restarter-1.0.6/service-restarter-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v2
+    appVersion: 1.21.0
     created: "2022-05-20T07:01:51.0873858Z"
     description: A Helm chart for periodically restarting Kubernetes workloads like
       deployments, daemonsets and statefulsets.
@@ -127,4 +148,4 @@ entries:
     urls:
     - https://github.com/wtchangdm/helm-charts/releases/download/service-restarter-1.0.0/service-restarter-1.0.0.tgz
     version: 1.0.0
-generated: "2022-05-20T07:01:51.0874094Z"
+generated: "2022-10-19T10:38:21.256290851Z"
