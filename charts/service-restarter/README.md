@@ -7,7 +7,7 @@ This chart is used for restarting Kubernetes workloads like deployments, daemons
 | successfulJobsHistoryLimit | The `successfulJobsHistoryLimit` for every CronJob. | 1 |
 | failedJobsHistoryLimit | The `failedJobsHistoryLimit` for every CronJob. | 1 |
 | image.repository | The kubectl image. | "public.ecr.aws/bitnami/kubectl" |
-| image.pullPolicy | Image pull polocy. | "IfNotPresent" |
+| image.pullPolicy | Image pull policy. | "IfNotPresent" |
 | image.tag | Image tag. | `""` <br> When this value is left blank, it will use Kubernetes cluster verison as `"<Major>.<Minor>"`, like `"1.21"`. |
 | imagePullSecrets | Image pull secrets. | `[]` |
 | nameOverride | Name override for this helm chart. | `""` |
